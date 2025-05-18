@@ -1,0 +1,101 @@
+---
+strategy: webhook
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: ''
+polling_headers: ''
+id: 44896
+custom_fields:
+- keyname: starting_hour
+  name: Starting Hour
+  description: Start the clock at a specific hour (instead of midnight)
+  field_type: select
+  optional: true
+  options:
+  - Midnight (Default): 0
+  - 1am: 1
+  - 2am: 2
+  - 3am: 3
+  - 4am: 4
+  - 5am: 5
+  - 6am: 6
+  - 7am: 7
+  - 8am: 8
+  - 9am: 9
+  - 10am: 10
+  - 11am: 11
+  - 12pm: 12
+  - 1pm: 13
+  - 2pm: 14
+  - 3pm: 15
+  - 4pm: 16
+  - 5pm: 17
+  - 6pm: 18
+  - 7pm: 19
+  - 8pm: 20
+  - 9pm: 21
+  - 10pm: 22
+  - 11pm: 23
+- keyname: finishing_hour
+  name: Finishing Hour
+  description: Instead of ending the clock at midnight, end at a different hour
+  field_type: select
+  optional: true
+  options:
+  - 1am: 1
+  - 2am: 2
+  - 3am: 3
+  - 4am: 4
+  - 5am: 5
+  - 6am: 6
+  - 7am: 7
+  - 8am: 8
+  - 9am: 9
+  - 10am: 10
+  - 11am: 11
+  - 12pm: 12
+  - 1pm: 13
+  - 2pm: 14
+  - 3pm: 15
+  - 4pm: 16
+  - 5pm: 17
+  - 6pm: 18
+  - 7pm: 19
+  - 8pm: 20
+  - 9pm: 21
+  - 10pm: 22
+  - 11pm: 23
+  - Midnight (Default): 24
+- keyname: columns_per_hour
+  name: Columns per hour
+  description: The number of columns shown for every hour of the clock
+  field_type: select
+  options:
+  - 1 Column per hour (60 minute intervals): 1
+  - 2 Column per hour (30 minute intervals): 2
+  - 3 Column per hour (20 minute intervals): 3
+  - 4 Column per hour (15 minute intervals): 4
+  default: 4
+- keyname: hour_label_stepping
+  name: Steps between hour labels
+  description: If displaying the entire day or a large range of time you may want to only show every 2nd, 3rd or 4th hour number or it can get cramped.
+  field_type: select
+  options:
+  - Display every hour label: 1
+  - Display every second hour label: 2
+  - Display every third hour label: 3
+  - Display every fourth hour label: 4
+  default: 1
+- keyname: time_format
+  name: Time Format
+  description: The format to use when displaying the hours on the clock. Either 12-hour time or 24 hour.
+  field_type: select
+  options:
+  - 12-hour time (show am/pm): 12a
+  - 12-hour time (without am/pm): '12'
+  - 24-hour time: '24'
+  default: '24'
+name: Linear Clock
+refresh_interval: 15
