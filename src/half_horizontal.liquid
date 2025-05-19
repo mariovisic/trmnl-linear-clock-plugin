@@ -1,7 +1,3 @@
-<!-- TODO LIST: 
-  - Formatting of bars vertical height
--->
-
 {% liquid
 comment
   plus: 0 is used to convert a string to an integer, which allows comparisons!
@@ -43,6 +39,7 @@ assign time_format = trmnl.plugin_settings.custom_fields_values.time_format
   .clock-bar {
     margin-right: 1px;
     margin-top: 2px;
+    height: 75px;
   }
 
   /* This is needed when the columns would otherwise overflow! */
