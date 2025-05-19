@@ -97,5 +97,16 @@ custom_fields:
   - 12-hour time (without am/pm): '12'
   - 24-hour time: '24'
   default: '24'
+- keyname: time_rounding
+  name: Round time to the nearest column
+  description: Due to the plugin and device refreshes not always being in-sync. A 15 minute plugin refesh cycle combined with a 15 minute device refresh cycle means the time shown will be delayed between 0-30 minutes. To help keep the clock more up-to-update this enabling this setting will round time to the nearest column. For example if displaying 4 columns per hour (15 minute columns), a time of 7:08 would have the column representing 7:15 be highlighted when usually it would not highlight until the plugin refreshes at 7:15 or later. The downside of rounding is that the clock can be fast depending on the refresh times of the plugin and device.
+  field_type: select
+  options:
+  - No (Default): 'No'
+  - Yes, round time up: 'Yes'
+  - Display every third hour label: 3
+  - Display every fourth hour label: 4
+  default: 'No'
+
 name: Linear Clock
 refresh_interval: 15
