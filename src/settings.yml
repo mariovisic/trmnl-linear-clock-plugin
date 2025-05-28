@@ -87,7 +87,7 @@ custom_fields:
   - Display every second hour label: 2
   - Display every third hour label: 3
   - Display every fourth hour label: 4
-  default: 1
+  default: 2
 - keyname: time_format
   name: Time Format
   description: The format to use when displaying the hours on the clock. Either 12-hour time or 24 hour.
