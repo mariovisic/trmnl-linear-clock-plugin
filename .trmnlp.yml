@@ -8,11 +8,11 @@ watch:
 
 # values of custom fields (defined in src/settings.yml)
 custom_fields: {
-  starting_hour: '8',
-  finishing_hour: '10',
+  starting_hour: '09',
+  finishing_hour: '17',
   time_format: '12a',
-  hour_label_stepping: '1',
-  columns_per_hour: '1',
+  hour_label_stepping: '2',
+  columns_per_hour: '4',
   time_rounding: 'Yes',
 }
 

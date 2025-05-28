@@ -1,0 +1,156 @@
+{% template linear_clock %}
+  {% liquid
+  comment
+    NOTE: plus: 0 is used to convert a string to an integer, which allows comparisons!
+  endcomment
+
+  assign hours = "now" | date: "%H"
+  assign minutes = "now" | date: "%M" | divided_by: 60.0
+  assign offset = offset | divided_by: 3600.0
+  assign columns_per_hour = config.columns_per_hour | default: 4
+  assign start_hour = config.starting_hour | default: 0 | plus: 0
+  assign finish_hour = config.finishing_hour | default: 24 | plus: 0
+  assign hour_label_stepping = config.hour_label_stepping | default: 1
+  assign column_label_stepping = hour_label_stepping | times: columns_per_hour
+  assign finish_hour_label = finish_hour
+  assign start_missing_columns = start_hour | times: columns_per_hour
+  assign finishing_column = finish_hour | times: columns_per_hour | minus: 1
+  assign elapsed_time_columns = hours | plus: minutes | plus: offset | modulo: 24 | times: columns_per_hour
+
+  if config.time_rounding == 'Yes'
+    assign elapsed_time_columns = elapsed_time_columns | round
+  else
+    assign elapsed_time_columns = elapsed_time_columns | floor
+  endif
+
+  if start_hour >= finish_hour
+    assign start_finish_hour_invalid = true
+  else
+    assign start_finish_hour_invalid = false
+  endif
+
+  assign time_format = config.time_format
+  %}
+
+  <style>
+    .linear-clock {
+      padding: 0 25px;
+    }
+
+    .clock-bar {
+      margin-right: 1px;
+      margin-top: 2px;
+      height: 75px;
+    }
+
+
+    /* This is needed when the columns would otherwise overflow! */
+    .clock-column {
+      width: 0px;
+    }
+
+    /* Needs to have high specicifity to ovveride trmnl flex CSS */
+    .trmnl .flex--row.flex--stretch-x .clock-column:last-of-type {
+      flex: none !important;
+    }
+
+    .hour-number {
+      font-size: 18px;
+      text-align: right;
+      width: auto-flow !important;
+      position: relative;
+      float: left;
+      transform: translateX(-50%);
+      padding-bottom: 2px;
+    }
+
+    .vertical-line {
+      position: relative;
+      transform: translateX(-50%);
+      clear: both;
+      width: 1.5px;
+      height: 25px;
+    }
+
+    .title--center {
+      text-align: center;
+    }
+  </style>
+
+  <div class="layout layout--col flex--center-y layout--stretch">
+    <div class="linear-clock flex flex--row flex--center-y flex--stretch-x flex--center-y gap--space-between">
+      {% if start_finish_hour_invalid %}
+        <span class="title title--center clamp--none">The Starting Hour must be earlier than the Finishing Hour to display the clock</span>
+      {% else %}
+        {% assign finishing_column_plus_one = finishing_column | plus: 1 %}
+        {% for num in (start_missing_columns...finishing_column_plus_one) %}
+
+        {% liquid
+           assign column_modulus = num | minus: start_missing_columns | modulo: column_label_stepping
+           if column_modulus == 0
+             assign hour = num | divided_by: columns_per_hour
+
+             if time_format == '12' or time_format == '12a'
+               if hour == 0 or hour == 24
+                 assign hour_label = 12
+               elsif hour > 12
+                 assign hour_label = hour | minus: 12
+               else
+                 assign hour_label = hour
+               endif
+               if time_format == '12a'
+                 if hour >= 12 and hour < 24
+                   assign hour_label = hour_label | append: 'pm'
+                 else
+                   assign hour_label = hour_label | append: 'am'
+                 endif
+               endif
+             else
+               assign hour_label = hour
+             endif
+           else
+             assign hour_label = "&nbsp;"
+           endif
+
+           assign hour_modulus = num | minus: start_missing_columns | modulo: columns_per_hour
+           if hour_modulus == 0
+             assign display_hour_tick = true
+           else
+             assign display_hour_tick = false
+           endif %}
+
+          <div class="clock-column">
+            {% if num < elapsed_time_columns %}
+              <div class="text--gray-2 hour-number">{{hour_label}}</div>
+              {% if display_hour_tick %}
+                <div class="bg--gray-2 vertical-line">&nbsp;</div>
+              {% else %}
+                <div class="vertical-line">&nbsp;</div>
+              {% endif %}
+              <div class="bg--gray-2 vertical-line">&nbsp;</div>
+              <div class="bg--gray-2 py--4 clock-bar">&nbsp;</div>
+            {% else %}
+              <div class="text--gray-4 hour-number">{{hour_label}}</div>
+              {% if display_hour_tick %}
+                <div class="bg--gray-4 vertical-line">&nbsp;</div>
+              {% else %}
+                <div class="vertical-line">&nbsp;</div>
+              {% endif %}
+              <div class="bg--gray-4 vertical-line">&nbsp;</div>
+              <div class="bg--gray-4 py--4 clock-bar">&nbsp;</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="title_bar">
+    <span class="image">🕥</span>
+
+    <span class="title">Linear Clock</span>
+    <span class="instance">{{ subtitle }}</span>
+  </div>
+
+{% endtemplate %}
+
