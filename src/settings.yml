@@ -77,7 +77,7 @@ custom_fields:
   - 2 Column per hour (30 minute intervals): 2
   - 3 Column per hour (20 minute intervals): 3
   - 4 Column per hour (15 minute intervals): 4
-  default: 4
+  default: 2
 - keyname: hour_label_stepping
   name: Steps between hour labels
   description: If displaying the entire day or a large range of time you may want to only show every 2nd, 3rd or 4th hour number or it can get cramped.
