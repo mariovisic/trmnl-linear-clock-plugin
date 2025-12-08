@@ -1,10 +1,10 @@
 ---
-strategy: webhook
+strategy: polling
 no_screen_padding: 'no'
 dark_mode: 'no'
 static_data: ''
 polling_verb: get
-polling_url: ''
+polling_url: 'http://www.randomnumberapi.com/api/v1.0/randomnumber?max=10000000'
 polling_headers: ''
 id: 44896
 custom_fields:
