@@ -8,6 +8,15 @@ polling_url: 'http://www.randomnumberapi.com/api/v1.0/randomnumber?max=10000000'
 polling_headers: ''
 id: 44896
 custom_fields:
+- keyname: bio
+  name: About This Plugin
+  category: calendar,productivity
+  field_type: author_bio
+  description: A linear clock, visualize as time passes, helps aid those of us with time blindness. The clock is very customizable, it can display a full 24h day, or a single hour, or a 9-5 workday.
+  github_url: https://github.com/mariovisic/trmnl-linear-clock-plugin
+  learn_more_url: https://github.com/mariovisic/trmnl-linear-clock-plugin
+  email_address: mario+trmnl@mariovisic.com
+  youtube_url: https://www.youtube.com/@CodeWithMario
 - keyname: starting_hour
   name: Starting Hour
   description: Start the clock at a specific hour (instead of midnight)
