@@ -119,23 +119,23 @@
 
           <div class="clock-column">
             {% if num < elapsed_time_columns %}
-              <div class="text--gray-2 text--right hour-number ">{{hour_label}}</div>
+              <div class="text--black text--right hour-number ">{{hour_label}}</div>
               {% if display_hour_tick %}
-                <div class="bg--gray-2 vertical-line">&nbsp;</div>
+                <div class="bg--gray-20 vertical-line">&nbsp;</div>
               {% else %}
                 <div class="vertical-line">&nbsp;</div>
               {% endif %}
-              <div class="bg--gray-2 vertical-line">&nbsp;</div>
-              <div class="bg--gray-2 py--4 clock-bar">&nbsp;</div>
+              <div class="bg--gray-20 vertical-line">&nbsp;</div>
+              <div class="bg--gray-20 py--4 clock-bar">&nbsp;</div>
             {% else %}
-              <div class="text--gray-4 text--right hour-number">{{hour_label}}</div>
+              <div class="text--gray-40 text--right hour-number">{{hour_label}}</div>
               {% if display_hour_tick %}
-                <div class="bg--gray-4 vertical-line">&nbsp;</div>
+                <div class="bg--gray-50 vertical-line">&nbsp;</div>
               {% else %}
                 <div class="vertical-line">&nbsp;</div>
               {% endif %}
-              <div class="bg--gray-4 vertical-line">&nbsp;</div>
-              <div class="bg--gray-4 py--4 clock-bar">&nbsp;</div>
+              <div class="bg--gray-50 vertical-line">&nbsp;</div>
+              <div class="bg--gray-50 py--4 clock-bar">&nbsp;</div>
             {% endif %}
           </div>
         {% endfor %}
