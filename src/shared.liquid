@@ -38,8 +38,7 @@
     }
 
     .clock-bar {
-      margin-right: 1px;
-      margin-top: 2px;
+      margin: 2px 0px 0px 1px;
       height: 75px;
     }
 
@@ -56,7 +55,6 @@
 
     .hour-number {
       font-size: 18px;
-      text-align: right;
       width: auto-flow !important;
       position: relative;
       float: left;
@@ -71,16 +69,16 @@
       width: 1.5px;
       height: 25px;
     }
-
-    .title--center {
-      text-align: center;
-    }
   </style>
 
   <div class="layout layout--col flex--center-y layout--stretch">
     <div class="linear-clock flex flex--row flex--center-y flex--stretch-x flex--center-y gap--space-between">
       {% if start_finish_hour_invalid %}
-        <span class="title title--center clamp--none">The Starting Hour must be earlier than the Finishing Hour to display the clock</span>
+        <div class="richtext richtext--center">
+            <div class="content content--center gap text--center">
+              <p>The Starting Hour must be earlier than the Finishing Hour to display the clock</p>
+            </div>
+        </div>
       {% else %}
         {% assign finishing_column_plus_one = finishing_column | plus: 1 %}
         {% for num in (start_missing_columns...finishing_column_plus_one) %}
@@ -121,7 +119,7 @@
 
           <div class="clock-column">
             {% if num < elapsed_time_columns %}
-              <div class="text--gray-2 hour-number">{{hour_label}}</div>
+              <div class="text--gray-2 text--right hour-number ">{{hour_label}}</div>
               {% if display_hour_tick %}
                 <div class="bg--gray-2 vertical-line">&nbsp;</div>
               {% else %}
@@ -130,7 +128,7 @@
               <div class="bg--gray-2 vertical-line">&nbsp;</div>
               <div class="bg--gray-2 py--4 clock-bar">&nbsp;</div>
             {% else %}
-              <div class="text--gray-4 hour-number">{{hour_label}}</div>
+              <div class="text--gray-4 text--right hour-number">{{hour_label}}</div>
               {% if display_hour_tick %}
                 <div class="bg--gray-4 vertical-line">&nbsp;</div>
               {% else %}
