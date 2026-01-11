@@ -42,7 +42,6 @@
       height: 75px;
     }
 
-
     /* This is needed when the columns would otherwise overflow! */
     .clock-column {
       width: 0px;
@@ -57,14 +56,13 @@
       font-size: 18px;
       width: auto-flow !important;
       position: relative;
-      float: left;
       transform: translateX(-50%);
-      padding-bottom: 2px;
+      bottom: -4px
     }
 
     .vertical-line {
       position: relative;
-      transform: translateX(-50%);
+      transform: translateX(-25%);
       clear: both;
       width: 1.5px;
       height: 25px;
@@ -119,7 +117,9 @@
 
           <div class="clock-column">
             {% if num < elapsed_time_columns %}
-              <div class="text--black text--right hour-number ">{{hour_label}}</div>
+              <div class="richtext richtext--left">
+                <div class="value text--black hour-number">{{hour_label}}</div>
+              </div>
               {% if display_hour_tick %}
                 <div class="bg--gray-20 vertical-line">&nbsp;</div>
               {% else %}
@@ -128,14 +128,16 @@
               <div class="bg--gray-20 vertical-line">&nbsp;</div>
               <div class="bg--gray-20 py--4 clock-bar">&nbsp;</div>
             {% else %}
-              <div class="text--gray-40 text--right hour-number">{{hour_label}}</div>
+              <div class="richtext richtext--left">
+                <div class="value text--gray-40 hour-number">{{hour_label}}</div>
+              </div>
               {% if display_hour_tick %}
-                <div class="bg--gray-50 vertical-line">&nbsp;</div>
+                <div class="bg--gray-60 vertical-line">&nbsp;</div>
               {% else %}
                 <div class="vertical-line">&nbsp;</div>
               {% endif %}
-              <div class="bg--gray-50 vertical-line">&nbsp;</div>
-              <div class="bg--gray-50 py--4 clock-bar">&nbsp;</div>
+              <div class="bg--gray-60 vertical-line">&nbsp;</div>
+              <div class="bg--gray-60 py--4 clock-bar">&nbsp;</div>
             {% endif %}
           </div>
         {% endfor %}
